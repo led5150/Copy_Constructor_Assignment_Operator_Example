@@ -54,7 +54,7 @@ int main() {
                         // also calls the copy constructor.
                         // Example:  ArrayPoint q(p);
 
-    // NOTE:  Comment out the copy constructor example above and 
+    // JFFE:  Comment out the copy constructor example above and 
     //        uncomment the assignment operation below to see how the same 
     //        thing happens with the overloaded assignment operator!
 
