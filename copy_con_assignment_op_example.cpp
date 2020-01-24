@@ -105,12 +105,12 @@ int main() {
             "Copile and run the code now....\n"
             "This will cause a double free memory error!! YIKES!! \n\n";
 
-    // Now you can uncomment the copy constructor and overloaded assignment
-    // operator and the destructor to see how proper implementations 
-    // of this will fix both the memory leaks and the double free!  Remember 
-    // to do so in both the .cpp and .h files!!  Without a working copy
-    // constructor and assignment overload, your destructor will cause double
-    // free errors.  But notice with them, everything works as you want!
+    cout << "Now you can uncomment the copy constructor and overloaded \n"
+            "assignment operator and the destructor to see how proper\n"
+            "implementations of this will fix both the memory leaks and the\n"
+            "double free!  Remember to do so in both the .cpp and .h files!!\n"
+         << endl;
+             
 
     cout << "Hope this helped you understand Copy Constuctors and \n"
             "Overloaded Assignment Operators!  Have a nice day!\n";
