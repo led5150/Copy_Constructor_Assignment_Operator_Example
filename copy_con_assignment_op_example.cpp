@@ -50,14 +50,14 @@ int main() {
     // Now we use the default copy constructor to initialize 
     // a new ArrayPoint with a copy of our original ArrayPoint p.
     
-    ArrayPoint q = p;  // Note: Initializing with parens 
+    ArrayPoint q = p;   // Note: Initializing with parens 
                         // also calls the copy constructor.
                         // Example:  ArrayPoint q(p);
 
     // NOTE:  Comment out the copy constructor example above and 
     //        uncomment the assignment operation below to see how the same 
     //        thing happens with the overloaded assignment operator!
-    
+
     // ArrayPoint q;
     // q = p;
 
@@ -84,7 +84,8 @@ int main() {
     p.print_xy();
     p.print_array();
 
-
+    cout << "Now we will print the values of q.  You would expect these had\n"
+            "changed, since we only updated p. However: \n"
     cout << "Notice how the xy_array contained in q got changed to the \n"
             "values we changed the xy_array in p to!!\n"
             "This is because the shallow copy only copied the address of\n"
