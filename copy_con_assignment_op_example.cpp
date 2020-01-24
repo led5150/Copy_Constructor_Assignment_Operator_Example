@@ -85,7 +85,7 @@ int main() {
     p.print_array();
 
     cout << "Now we will print the values of q.  You would expect these had\n"
-            "changed, since we only updated p. However: \n"
+            "changed, since we only updated p. However: \n";
     cout << "Notice how the xy_array contained in q got changed to the \n"
             "values we changed the xy_array in p to!!\n"
             "This is because the shallow copy only copied the address of\n"
