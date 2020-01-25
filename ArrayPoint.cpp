@@ -19,7 +19,7 @@
 #include <iostream>
 #include "ArrayPoint.h"
 using namespace std;
-
+    
 
     // Default Constructor
     ArrayPoint::ArrayPoint() 
@@ -39,7 +39,7 @@ using namespace std;
     //        error might occur. 
     ArrayPoint::~ArrayPoint() 
     {
-        // delete [] xy_array;
+        // delete [] xy_array;  // uncomment me when ready.
     }
 
     
@@ -57,6 +57,7 @@ using namespace std;
     //             initialized ArrayPoint
 
     // ******************* UNCOMMENT BELOW WHEN READY *************************
+
     // ArrayPoint::ArrayPoint(const ArrayPoint &rhs)
     // {
     //     x = rhs.x;
@@ -67,6 +68,8 @@ using namespace std;
     //     }
     // }
 
+    // *************************** END UNCOMMENT ******************************
+
 
     // Function:   Overloaded Assignment Operator
     // Parameters: const ArrayPoint &source - an initialized ArrayPoint object
@@ -75,6 +78,7 @@ using namespace std;
     //             ArrayPoint.
 
     // ******************* UNCOMMENT BELOW WHEN READY *************************
+
     // ArrayPoint &ArrayPoint::operator= (const ArrayPoint &rhs)
     // {
     //     if (this == &rhs) {
@@ -92,6 +96,7 @@ using namespace std;
     //     return *this;
     // }
 
+    // *************************** END UNCOMMENT ******************************
 
 
 
@@ -124,7 +129,8 @@ using namespace std;
     // Does:       prints the x and y member variables to cout
     void ArrayPoint::print_xy() 
     {
-        cout << "x is: " << x << " y is: " << y << endl;
+        cout << "x is: " << x << endl;
+        cout << "y is: " << y << endl;
     }
 
     // Function:   print_array
@@ -133,8 +139,8 @@ using namespace std;
     // Does:       prints the contents of xy_array member variable to cout
     void ArrayPoint::print_array() 
     {
-        cout << "xy_array[0]: " << xy_array[0] << " xy_array[1]: "  
-             << xy_array[1] << endl << endl;    
+        cout << "xy_array[0]: " << xy_array[0] << endl;
+        cout << "xy_array[1]: " << xy_array[1] << endl << endl;    
     }
 
 

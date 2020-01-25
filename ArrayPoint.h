@@ -18,7 +18,7 @@ public:
     ~ArrayPoint();  // Default Destructor
 
                   /* LEAVE THESE UNCOMMENTED AT FIRST!! */
-    // ArrayPoint(const ArrayPoint &rhs);             // Copy Constructor
+    // ArrayPoint(const ArrayPoint &rhs);              // Copy Constructor
     // ArrayPoint &operator= (const ArrayPoint &rhs);  // Assignment Overload
 
     void set_xy(int x_input, int y_input); 

@@ -16,102 +16,144 @@ using namespace std;
 
 
 int main() {
+    cout << "\nCopy Constructors and Overloaded Assignment Operators\n";
+    cout << "          An example of why we need them: \n" << endl;
 
-    cout << "\n1. Using the default constructor to initialze an ArrayPoint \n"
-            "object p.  We then print out the variables to make sure \n"
-            "our initialzation was correct\n\n";
 
-    // Initializing like this runs the default constructor
-    ArrayPoint p;
+    /*  
+        1.  Using the default constructor to initialze an ArrayPoint
+            object p.  We then print out the variables to make sure
+            our initialzation was correct.
+    */
 
-    // Printing the values to show the default values we set 
-    // in our constructor.
-    cout << "Printing p: \n";
+    ArrayPoint p;   // Initialization using Default Constructor
+
+    cout << "1. Printing p: \n" << endl;
     p.print_xy();
     p.print_array();
 
 
+    /*
+    2. Now lets set some new values for the member variables of p.
+       We'll print these out to make sure they were updated correctly:
+    */
 
-    cout << "2. Now we set some new values for the member variables. \n";
-    p.set_xy(42, 99);
-    p.set_array(42, 99);
+    cout << "2. Setting p..." << endl;
+    p.set_xy(42, 17);
+    p.set_array(42, 17);
 
-    cout << "Printing out the values of p to prove that they "
-            "were changed correctly: \n\n";
-    cout << "Printing p: \n";
+
+    cout << "   Printing p: \n" << endl;
     p.print_xy();
     p.print_array();
 
 
+    /*
+    3. Initializing a new ArrayPoint q from our original ArrayPoint p.
+       Since we have not defined our own copy constructor, C++ synthesizes 
+       one for us and does a "shallow copy".  Lets see how shallow copies
+       work when we have dynamically allocated memory in our class.
+    */
 
-    cout << "3. Initializing a new ArrayPoint q using the default "
-            "copy constructor\n";
-
-    // Now we use the default copy constructor to initialize 
-    // a new ArrayPoint with a copy of our original ArrayPoint p.
     
-    ArrayPoint q = p;   // Note: Initializing with parens 
-                        // also calls the copy constructor.
-                        // Example:  ArrayPoint q(p);
+    
+    ArrayPoint q = p;   // Note: Initializing with parens like this:
+                        //       ArrayPoint q(p);
+                        //       also calls the copy constructor.
 
-    // JFFE:  Comment out the copy constructor example above and 
-    //        uncomment the assignment operation below to see how the same 
-    //        thing happens with the overloaded assignment operator!
+    // JFFE:  When you're finished, comment out the copy constructor example    
+    //        above and uncomment the assignment operation below to see 
+    //        how the same thing happens with the overloaded assignment 
+    //        operator!
 
-    // ArrayPoint q;
-    // q = p;
 
-    cout << "4. Priting q after copy constructing from p to see that\n"
-            "the values 'SEEM' to all have been copied:\n\n";
-    cout << "Printing q: \n";
+    // ArrayPoint q;    // runs default constructor
+    // q = p;           // Copies from p to q using the overloaded 
+    //                  // assignment operator
+
+
+
+    /*
+    Priting q after copy constructing from p to see that
+    the values 'SEEM' to all have been copied:
+    */
+
+    cout << "3. Printing q: \n" << endl;
     q.print_xy();
     q.print_array();
 
-    cout << "****************** The Interesting Part *******************\n";
-    cout << "Now we change the values in p.  You might expect that this \n"
-            "change will only be reflected in p.  However as demonstrated \n"
-            "below, changing the values of the dynamically allocated array \n"
-            "of p will also be reflected in the array in q.  This is\n"
-            "the result of the default copy constructor making a shallow\n"
-            "copy.  The integers however, do act as we might expect\n"
-            "therefore, copy constructors are not needed when only using\n"
-            "primitive data types.\n\n";
+    /*
+
+    ******************** The Interesting Part ************************
+
+    4. Now we change the values in p. You might expect that this
+       change will only be reflected in p. However as demonstrated
+       below, changing the values of the dynamically allocated array
+       of p will also be reflected in the array in q! This is
+       the result of the default copy constructor making a shallow
+       copy. The only information that is copied about our dynamically
+       allocated array is the pointer to p's first value. Crucially, it
+       does not copy the contents of the array.
+
+       The integers however, do act as we might expect, therefore, 
+       copy constructors 'may' not needed when only using
+       built-in or "primitive" data types, though it is usually best 
+       practice to implement them anyway.
+
+    */
+
     p.set_xy(4444, 5555);
     p.set_array(4444, 5555);
 
-    cout << "Showing how variables changed in p as expected:\n\n";
-    cout << "Printing p: \n";
+    cout << "4. Showing how variables changed in p as expected." << endl;
+    cout << "   Printing p: \n" << endl;
     p.print_xy();
     p.print_array();
 
-    cout << "Now we will print the values of q.  You would expect these had\n"
-            "changed, since we only updated p. However: \n";
-    cout << "Notice how the xy_array contained in q got changed to the \n"
-            "values we changed the xy_array in p to!!\n"
-            "This is because the shallow copy only copied the address of\n"
-            "the array in p, not it's actual contents.\n\n";
+    /*
 
-    cout << "Printing q: \n";
+    5. Now we will print the values of q.  Notice how the xy_array 
+       contained in q got changed to the values we changed the xy_array 
+       in p to!  
+
+    */
+
+    cout << "5. Showing how variables changed in q NOT as expected." << endl;
+    cout << "   Printing q: \n" << endl;
     q.print_xy();
     q.print_array();
 
-    cout << "\nNow run valgrind to see that there are memory leaks because \n"
-            "we have not implemented a working destructor. BAD!\n\n";
+    /*
+
+    6. Now run valgrind to see that there are memory leaks because
+       we have not implemented a working destructor.
+
+
     // NOTE: IN THIS NEXT SECTION YOU WILL INTENTIONALLY CREATE A DOUBLE FREE
-    //       ERROR.  Just undo this step after you have done so to continue.
-    cout << "You might think to fix the memory leak, all you need is a \n"
-            "destructor.  Now go and uncomment the 'delete [] xy_array' \n"
-            "command in destructor of the .h file. \n"
-            "Copile and run the code now....\n"
-            "This will cause a double free memory error!! YIKES!! \n\n";
+    //       ERROR. However, once you complete step 8 you will have a working
+             program with no memory leaks or double frees.
 
-    cout << "Now you can uncomment the copy constructor and overloaded \n"
-            "assignment operator and the destructor to see how proper\n"
-            "implementations of this will fix both the memory leaks and the\n"
-            "double free!  Remember to do so in both the .cpp and .h files!!\n"
-         << endl;
+    7. You might think to fix the memory leak, all you need is a
+       destructor.  Go and uncomment the 'delete [] xy_array'
+       command in destructor of the .h file.
+
+       Copile and run the code now....
+       This will cause a double free memory error!! YIKES!!
+
+       The reason for this is that the code to destoy our ArrayPoint p runs.
+       It frees the memory assosiated with p's xy_array.  Then the destuctor
+       for q runs.  Since the pointer in xy_array pointer in q is pointing
+       to the same memory location that we just freed, C++ throws the 
+       double free error.
+
+
+    8. Now you can uncomment the copy constructor and overloaded 
+       assignment operator and the destructor to see how proper
+       implementations of this will fix both the memory leaks and the
+       double free!  Remember to do so in both the .cpp and .h files!!
+
              
-
+    */
     cout << "Hope this helped you understand Copy Constuctors and \n"
             "Overloaded Assignment Operators!  Have a nice day!\n";
 

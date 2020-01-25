@@ -10,7 +10,7 @@
 #
 
 CXX      = clang++
-CXXFLAGS = -g3 -Wall -Wextra -std=c++11 -O3
+CXXFLAGS = -g3 -Wall -Wextra -std=c++11
 
 
 example: copy_con_assignment_op_example.cpp ArrayPoint.o
