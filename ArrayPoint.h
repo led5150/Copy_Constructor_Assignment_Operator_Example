@@ -10,6 +10,7 @@
 #ifndef _ARRAYPOINT_H_
 #define _ARRAYPOINT_H_
 
+
 class ArrayPoint
 {
 public:

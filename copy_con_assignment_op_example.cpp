@@ -20,6 +20,8 @@ int main() {
     cout << "          An example of why we need them: \n" << endl;
 
 
+
+
     /*  
         1.  Using the default constructor to initialze an ArrayPoint
             object p.  We then print out the variables to make sure
@@ -105,6 +107,7 @@ int main() {
     p.set_xy(4444, 5555);
     p.set_array(4444, 5555);
 
+
     cout << "4. Showing how variables changed in p as expected." << endl;
     cout << "   Printing p: \n" << endl;
     p.print_xy();
@@ -140,17 +143,24 @@ int main() {
        Copile and run the code now....
        This will cause a double free memory error!! YIKES!!
 
-       The reason for this is that the code to destoy our ArrayPoint p runs.
-       It frees the memory assosiated with p's xy_array.  Then the destuctor
-       for q runs.  Since the pointer in xy_array pointer in q is pointing
-       to the same memory location that we just freed, C++ throws the 
-       double free error.
+       The reason for this is that the destructor to destoy our 
+       ArrayPoint p runs.  It frees the memory assosiated with p's xy_array.
+       Then the destuctor for q runs.  Since the pointer in xy_array pointer 
+       in q is pointing to the same memory location that we just freed, 
+       C++ throws the double free error.
 
 
     8. Now you can uncomment the copy constructor and overloaded 
        assignment operator and the destructor to see how proper
        implementations of this will fix both the memory leaks and the
        double free!  Remember to do so in both the .cpp and .h files!!
+
+       Notice in 4. the values for ArrayPoint p's xy_array changed to
+       4444, 5555 as expected, and also, in 5. how the values in q's xy_array
+       have been unchanged.  That is because with the Copy Constructor
+       properly implemented, q's xy_array pointer points to its own unique
+       location in memory.  
+
 
              
     */
