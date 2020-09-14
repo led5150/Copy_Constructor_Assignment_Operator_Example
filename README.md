@@ -10,6 +10,7 @@ using an array.
 Next, use the provided Makefile and simply type 
 
     make
+    
 This will compile and executatble called 'example'.
 
 To run the program type
